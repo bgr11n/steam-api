@@ -1,0 +1,11 @@
+defaults: &defaults
+  steam_key: 25BBD519FFF6AA4AA389F19553A44CF8
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults
