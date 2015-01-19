@@ -10,12 +10,19 @@ class InventoryController < ApplicationController
     hash = JSON(resp.body)
 
     @items = Hash.new
-    hash['rgDescriptions'].each do |k, v|
-      @items[k] ||= {}
-      @items[k][:id] = v['classid']
-      @items[k][:title] = v['market_hash_name']
-      @items[k][:icon_url] = v['icon_url']
-      @items[k][:tradable] = v['tradable']
+
+    i = 0
+    hash['rgInventory'].each do |k, v|
+      @items[i] ||= {}
+      @items[i][:id] = v['id']
+      @items[i][:classid] = v['classid']
+      i+=1
+    end
+
+    @items.each do |k, v|
+      @items[k][:title] = hash['rgDescriptions']["#{v[:classid]}_0"]['market_hash_name']
+      @items[k][:icon_url] = hash['rgDescriptions']["#{v[:classid]}_0"]['icon_url']
+      @items[k][:tradable] = hash['rgDescriptions']["#{v[:classid]}_0"]['tradable']
     end
 
   end
