@@ -15,6 +15,7 @@
     <p><%= current_user.nickname %></p>
     <%= link_to 'Home', root_path %> |&nbsp
     <%= link_to 'Show my inventory', inventory_path %> |&nbsp
+    <%= link_to 'Store', store_index_path %> |&nbsp
     <%= link_to 'Log out', log_out_path %>
   <% else %>
     <%= link_to image_tag("http://cdn.steamcommunity.com/public/images/signinthroughsteam/sits_large_noborder.png"), '/auth/steam' %>

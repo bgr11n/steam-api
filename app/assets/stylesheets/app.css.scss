@@ -1,3 +1,36 @@
 // Place all the styles related to the app controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.store-items, .inventory-items {
+  margin: 0;
+  padding: 0;
+}
+
+.store-items li, .inventory-items li {
+  float: left;
+  padding: 5px;
+  margin: 0 5px 5px 0;
+  list-style: none;
+  border: 1px solid #eee;
+
+  &:hover {
+    background-color: #f3f3f3;
+  }
+}
+
+.inventory-container {
+  overflow: hidden;
+  width: 75%;
+}
+
+#add-store-item {
+  padding-left: 15px;
+  position:absolute;
+  right:0;
+  top:0;
+  overflow: hidden;
+  width: 25%;
+  height:100%;
+  background-color: #f1f1f1;
+}

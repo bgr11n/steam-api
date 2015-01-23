@@ -1,0 +1,40 @@
+//= require jquery
+//= require jquery_ujs
+//= require turbolinks
+//= require knockout
+//= require_tree .
+
+
+runeach = ->
+  InventoryItem = (data) ->
+    this.classid = ko.observable(data.classid)
+    this.item_id = ko.observable(data.item_id)
+    this.icon_url = ko.observable(data.icon_url)
+    this.title = ko.observable(data.title)
+    this.price = ko.observable ''
+    return
+
+  InventoryViewModel = ->
+    self = this
+    self.InventoryItems = ko.observableArray []
+    self.SelectedItem = ko.observable ''
+
+    $.getJSON '/load_inventory', (data) ->
+      mappedItems = $.map data, (item) ->
+       new InventoryItem item
+
+      self.InventoryItems mappedItems
+
+    self.getSelectedItem = ->
+      self.SelectedItem this
+
+    self.sendToStore = ->
+      bid = this
+      $.post '/store', { bid }, (response) ->
+        Turbolinks.visit response.next
+
+    return
+
+  ko.applyBindings new InventoryViewModel()
+
+$(document).on 'ready page:load', runeach

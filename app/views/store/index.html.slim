@@ -1,0 +1,8 @@
+h1 Store
+
+ul class='store-items'
+  - @bids.each do |bid|
+    li
+      img src=bid.icon_url+'/100fx100f'
+      p= bid.title
+      p Price: #{bid.price}

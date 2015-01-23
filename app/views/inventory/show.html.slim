@@ -1,0 +1,17 @@
+h1 Your CS:GO inventory
+
+.inventory-container
+  p data-bind='ifnot:InventoryItems().length > 0'
+    i Loading...
+
+  ul class='inventory-items' data-bind='foreach:InventoryItems'
+    li data-bind='click:$parent.getSelectedItem'
+      img height="100px" data-bind='attr:{src:icon_url}'
+      p data-bind='text:title'
+
+#add-store-item data-bind='with:SelectedItem'
+  img height="100px" data-bind='attr:{src:icon_url}'
+  p data-bind='text:title'
+  input data-bind='value:price' type="number"
+
+  button data-bind='click:$parent.sendToStore' Sell
