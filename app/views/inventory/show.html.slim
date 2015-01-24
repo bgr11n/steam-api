@@ -10,6 +10,8 @@ h1 Your CS:GO inventory
       p data-bind='text:title'
 
 #add-store-item data-bind='with:SelectedItem'
+  p class="inventory-error-mesage" data-bind="text:$parent.errorMessage"
+
   img height="100px" data-bind='attr:{src:icon_url}'
   p data-bind='text:title'
   input data-bind='value:price' type="number"

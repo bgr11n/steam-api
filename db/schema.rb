@@ -11,14 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150123102235) do
+ActiveRecord::Schema.define(version: 20150124153616) do
 
   create_table "bids", force: true do |t|
     t.integer  "item_id"
     t.integer  "classid"
     t.string   "title"
     t.string   "icon_url"
-    t.integer  "price"
+    t.decimal  "price"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

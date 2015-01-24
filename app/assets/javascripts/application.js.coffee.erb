@@ -16,6 +16,7 @@ runeach = ->
 
   InventoryViewModel = ->
     self = this
+    self.errorMessage = ko.observable ''
     self.InventoryItems = ko.observableArray []
     self.SelectedItem = ko.observable ''
 
@@ -27,11 +28,15 @@ runeach = ->
 
     self.getSelectedItem = ->
       self.SelectedItem this
+      self.errorMessage ''
 
     self.sendToStore = ->
       bid = this
-      $.post '/store', { bid }, (response) ->
-        Turbolinks.visit response.next
+      if bid.price() > 0
+        $.post '/store', { bid }, (response) ->
+          Turbolinks.visit response.next
+      else
+        self.errorMessage "Please enter valid price"
 
     return
 
