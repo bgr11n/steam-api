@@ -16,4 +16,8 @@ class User
   def uid
     @data['uid']
   end
+
+  def profile_url
+    @data['profile_url']
+  end
 end

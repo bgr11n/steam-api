@@ -7,19 +7,21 @@ class InventoryController < ApplicationController
   end
 
   def load
-    uri = URI("http://steamcommunity.com/profiles/" + current_user.uid + "/inventory/json/730/2")
+    uri = URI(current_user.profile_url + "/inventory/json/730/2")
 
     resp = Net::HTTP.get_response(uri)
     hash = JSON(resp.body)
 
     items = hash['rgInventory'].map do |k, v|
-      tradable = hash['rgDescriptions']["#{v['classid']}_0"]['tradable']
+
+      tradable = hash['rgDescriptions']["#{v['classid']}_#{v['instanceid']}"]['tradable']
       {
         item_id: v['id'],
         classid: v['classid'],
-        title: hash['rgDescriptions']["#{v['classid']}_0"]['market_hash_name'],
-        icon_url: 'https://steamcommunity-a.akamaihd.net/economy/image/' +hash['rgDescriptions']["#{v['classid']}_0"]['icon_url']
+        title: hash['rgDescriptions']["#{v['classid']}_#{v['instanceid']}"]['market_hash_name'],
+        icon_url: 'https://steamcommunity-a.akamaihd.net/economy/image/' +hash['rgDescriptions']["#{v['classid']}_#{v['instanceid']}"]['icon_url']
       } if tradable == 1
+
     end
 
     render json: items.compact!

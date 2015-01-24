@@ -13,14 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20150123102235) do
 
-  create_table "auctions", force: true do |t|
-    t.integer  "market_id"
-    t.string   "title"
-    t.string   "icon_url"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "bids", force: true do |t|
     t.integer  "item_id"
     t.integer  "classid"
