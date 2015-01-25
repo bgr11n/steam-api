@@ -74,6 +74,7 @@ GEM
     omniauth-steam (1.0.3)
       multi_json
       omniauth-openid
+    pg (0.17.1)
     polyglot (0.3.5)
     pry (0.10.1)
       coderay (~> 1.1.0)
@@ -161,6 +162,7 @@ DEPENDENCIES
   jquery-rails
   knockoutjs-rails
   omniauth-steam
+  pg
   pry
   rails (= 4.1.4)
   sass-rails (~> 4.0.3)
